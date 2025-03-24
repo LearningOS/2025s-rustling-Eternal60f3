@@ -5,14 +5,14 @@
 // Execute `rustlings hint structs1` or use the `hint` watch subcommand for a
 // hint.
 
-
 struct ColorClassicStruct {
     // TODO: Something goes here
-    red: i32,
+    red: i32, 
     green: i32,
     blue: i32,
 }
 
+/* TODO: Something goes here */
 struct ColorTupleStruct(i32, i32, i32);
 
 #[derive(Debug)]
@@ -25,11 +25,7 @@ mod tests {
     #[test]
     fn classic_c_structs() {
         // TODO: Instantiate a classic c struct!
-        let green = ColorClassicStruct {
-            red: 0,
-            green: 255,
-            blue: 0,
-        };
+        let green = ColorClassicStruct{red: 0, green: 255, blue: 0};
 
         assert_eq!(green.red, 0);
         assert_eq!(green.green, 255);

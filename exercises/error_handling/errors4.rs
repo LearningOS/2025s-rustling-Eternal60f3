@@ -15,12 +15,17 @@ enum CreationError {
 impl PositiveNonzeroInteger {
     fn new(value: i64) -> Result<PositiveNonzeroInteger, CreationError> {
         // Hmm...? Why is this only returning an Ok value?
-        if value < 0 {
-            return Err(CreationError::Negative);
-        } else if value == 0 {
-            return Err(CreationError::Zero);
-        } else {
-            return Ok(PositiveNonzeroInteger(value as u64));
+        // Ok(PositiveNonzeroInteger(value as u64))
+        match value {
+            1.. => {
+                Ok(PositiveNonzeroInteger(value as u64))
+            },
+            0 => {
+                Err(CreationError::Zero)
+            },
+            _ => {
+                Err(CreationError::Negative)
+            }
         }
     }
 }

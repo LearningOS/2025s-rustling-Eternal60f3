@@ -36,14 +36,13 @@ mod tests {
     #[should_panic]
     fn negative_width() {
         // This test should check if program panics when we try to create rectangle with negative width
-        let _rect = Rectangle::new(-10, 10);
-        
+        let rect = Rectangle::new(-10, 10);
     }
 
     #[test]
     #[should_panic]
     fn negative_height() {
         // This test should check if program panics when we try to create rectangle with negative height
-        let _rect = Rectangle::new(10, -10);
+        let rect = Rectangle::new(10, -10);
     }
 }

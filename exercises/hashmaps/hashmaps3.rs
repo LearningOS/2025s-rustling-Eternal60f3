@@ -17,6 +17,7 @@
 use std::collections::HashMap;
 
 // A structure to store the goal details of a team.
+#[derive(Debug)]
 struct Team {
     goals_scored: u8,
     goals_conceded: u8,
@@ -38,24 +39,13 @@ fn build_scores_table(results: String) -> HashMap<String, Team> {
         // goals scored by team_2 will be the number of goals conceded by
         // team_1.
 
-        let mut func = |team_name: &str, self_score: u8, opponent_score| {
-            if scores.contains_key(team_name) {
-                let team = scores.get_mut(team_name).unwrap();
-                team.goals_scored += self_score;
-                team.goals_conceded += opponent_score;
-            } else {
-                scores.insert(
-                    team_name.to_owned(),
-                    Team {
-                        goals_scored: self_score,
-                        goals_conceded: opponent_score,
-                    },
-                );
-            }
-        };
+        let t1 = scores.entry(team_1_name).or_insert(Team{goals_scored: 0, goals_conceded: 0});
+        t1.goals_scored += team_1_score;
+        t1.goals_conceded += team_2_score;
 
-        func(&team_1_name, team_1_score, team_2_score);
-        func(&team_2_name, team_2_score, team_1_score);
+        let t2 = scores.entry(team_2_name).or_insert(Team{goals_scored: 0, goals_conceded: 0});
+        t2.goals_scored += team_2_score;
+        t2.goals_conceded += team_1_score;
     }
     scores
 }
